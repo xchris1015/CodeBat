@@ -1,69 +1,63 @@
-def count_evens(nums):
-  #Return the number of even ints in the given array. Note: the % "mod" operator
-  #computes the remainder, e.g. 5 % 2 is 1.
+def double_char(str):
+  #Given a string, return a string where for every char in the original,
+  #there are two chars.
+  list=[]
+  for char in str:
+    list.append(char)
+    list.append(char)
+
+  return ''.join(list)
+  #return ''.join(char * 2 for char in str)
+
+def count_hi(str):
+ # Return the number of times that the string "hi" appears anywhere in the given
+ #  string.
   count=0
-  for num in nums:
-    if num%2==0:
+  for i in range(len(str)-1):
+    if str[i:i+2]=='hi':
       count+=1
     else:
       continue
   return count
 
 
-def big_diff(nums):
-    # Given an array length 1 or more of ints, return the difference between the
-    # largest and smallest values in the array. Note: the built-in min(v1, v2)
-    # and max(v1, v2) functions return the smaller or larger of two values.
-    return max(nums) - min(nums)
+def cat_dog(str):
+    # Return True if the string "cat" and "dog" appear the same number of times in
+    # the given string.
+    cat_count = 0
+    dog_count = 0
 
-def centered_average(nums):
-  #Return the "centered" average of an array of ints, which we'll say is the mean
-  #average of the values, except ignoring the largest and smallest values in the
-  #array. If there are multiple copies of the smallest value, ignore just one
-  #copy, and likewise for the largest value. Use int division to produce the
-  #final average. You may assume that the array is length 3 or more.
-  large=max(nums)
-  small=min(nums)
-  nums.remove(large)
-  nums.remove(small)
-  sum=0
-  for num in nums:
-    sum+=num
-  average=sum/len(nums)
-  return average
+    for i in range(len(str) - 2):
+        if str[i:i + 3] == 'cat':
+            cat_count += 1
+        if str[i:i + 3] == 'dog':
+            dog_count += 1
+    return cat_count == dog_count
+
+def count_code(str):
+  #Return the number of times that the string "code" appears anywhere in the given
+  #string, except we'll accept any letter for the 'd', so "cope" and "cooe" count.
+  count=0
+  for i in range(len(str)-3):
+    if str[i:i+2]=='co' and str[i+3]=='e':
+      count+=1
+  return count
 
 
-def sum13(nums):
-    # Return the sum of the numbers in the array, returning 0 for an empty array.
-    # Except the number 13 is very unlucky, so it does not count and numbers that
-    # come immediately after a 13 also do not count.
+def end_other(a, b):
+    # Given two strings, return True if either of the strings appears at the very
+    # end of the other string, ignoring upper/lower case differences
+    a.lower()
+    b.lower()
 
-    while 13 in nums:
-        if nums.index(13) < len(nums) - 1:
-            nums.pop(nums.index(13) + 1)
-        nums.pop(nums.index(13))
+    return (b.endswith(a) or a.endswith(b))
 
-    return sum(nums)
-
-def sum67(nums):
-  #Return the sum of the numbers in the array, except ignore sections of numbers
-  #starting with a 6 and extending to the next 7 (every 6 will be followed by at
-  #least one 7). Return 0 for no numbers.
-  sum=0
-  check=True
-  for num in nums:
-    if num==6:
-      check=False
-    if check:
-      sum+=num
-    if num==7:
-      check=True
-  return sum
-
-def has22(nums):
-  #Given an array of ints, return True if the array contains a 2 next to a 2 somewhere.
-  for i in range(len(nums)-1):
-    if nums[i]==2 and nums[i+1]==2:
+def xyz_there(str):
+  #Return True if the given string contains an appearance of "xyz" where the xyz
+  #is not directly preceeded by a period (.). So "xxyz" counts but "x.xyz" does
+  #not.
+  for i in range(len(str)):
+    if str[i:i+3]=='xyz' and str[i-1]!='.':
       return True
   return False
 
